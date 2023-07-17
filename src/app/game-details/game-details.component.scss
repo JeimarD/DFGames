@@ -1,0 +1,22 @@
+.img-fluid {
+    width: 100%;
+}
+
+.thumbnail {
+    @media (max-width: 768px) {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+.card-system-requirements {
+    background-color: #18012d;
+    border-radius: 10px;
+    background-color: #18012d;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 2px #ffffff;
+}
+
+.btn {
+    background-color: #0d6efd;
+}

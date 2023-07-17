@@ -1,0 +1,85 @@
+.pagination ::ng-deep .ngx-pagination {
+  border-radius: 5px;
+  background-color: #0d6efd;
+  padding-left: 0;
+    .current {
+      background-color: #001899;
+    }
+
+    li:hover {
+      a {
+        background-color: #001899; 
+      }
+    }
+
+    .pagination-next:hover {
+      a {
+        background-color: #001899;
+      }
+    }
+
+    .pagination-previous:hover {
+      a {
+        background-color: #001899;
+      }
+    }
+}
+
+.game-list-container {
+  color: #fff;
+}
+
+.not-found {
+  text-align: center;
+  font-size: 18px;
+  color: #ff0000;
+  margin-top: 20px;
+}
+
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #00f6ea;
+  color: #fff;
+}
+
+input:focus-visible {
+  background: transparent;
+  outline: unset;
+  color: #fff;
+}
+
+input:focus {
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  color: #fff;
+}
+
+select {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #00f6ea;
+  color: #fff;
+
+  option {
+    background-color: #2e0b6e;
+    color: white;
+  }
+}
+
+select:focus-visible {
+  background-color: transparent;
+  color: #fff;
+}
+
+select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.card {
+  background: #18012d;
+  box-shadow: 1px 1px 2px 2px #ffffff;
+  color: #fff;
+}

@@ -1,0 +1,63 @@
+<div *ngIf="game" class="game-detail-container">
+  <h1 class="title text-center p-5">{{ game.title }}</h1>
+  <div class="row mb-5">
+    <div class="col-12 col-md-6 thumbnail mb-5 mb-md-0 px-5">
+      <div>
+        <img
+          [src]="game.thumbnail"
+          alt="{{ game.title }} thumbnail"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-md-6 d-flex justify-content-center px-5">
+      <div class="details d-flex flex-column justify-content-center">
+        <p class="fs-5 my-3"><strong>Genre:</strong> {{ game.genre }}</p>
+        <p class="fs-5 my-3"><strong>Platform:</strong> {{ game.platform }}</p>
+        <p class="fs-5 my-3"><strong>Publisher:</strong> {{ game.publisher }}</p>
+        <p class="fs-5 my-3">
+          <strong>Release Date:</strong> {{ game.release_date }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="description px-5 mb-5">
+    <p><strong>Description:</strong> {{ game.description }}</p>
+  </div>
+  <div class="system-requirements mb-3 d-flex flex-column align-items-center px-5">
+    <div class="card-system-requirements d-flex flex-column px-5">
+      <div>
+        <p class="text-center pt-3 h5">
+          <strong>Minimum System Requirements:</strong>
+        </p>
+      </div>
+      <div class="d-flex flex-column h-100 px-3 py-4 justify-content-between align-items-center">
+        <span class="py-2 text-center">OS: {{ game.minimum_system_requirements.os }}</span>
+        <span class="py-2 text-center">Processor: {{ game.minimum_system_requirements.processor }}</span>
+        <span class="py-2 text-center">Graphics: {{ game.minimum_system_requirements.graphics }}</span>
+        <span class="py-2 text-center">Storage: {{ game.minimum_system_requirements.storage }}</span>
+      </div>
+    </div>
+  </div>
+  <h2 class="text-center mb-5">Screenshots:</h2>
+  <div class="screenshots-carousel">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let screenshot of game.screenshots">
+        <img [src]="screenshot.image" alt="Game Screenshot" class="px-5" />
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+  <div class="px-5 py-5 w-100">
+    <button (click)="goBack()" class="btn mt-3 w-100"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i> <span class="px-5 text-white">Back</span></button>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#ffff00"
+  type="pacman"
+  [fullScreen]="true"
+>
+  <p style="color: white">Loading...</p>
+</ngx-spinner>

@@ -1,0 +1,132 @@
+<div class="d-flex flex-column flex-md-row">
+  <div class="col-12 col-md-3 px-5 pt-5">
+    <form [formGroup]="filterForm" class="mb-4">
+      <div class="form-group mb-5">
+        <label for="searchInput" class="mb-1">Search by name:</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="search"
+          id="searchInput"
+        />
+      </div>
+      <div class="form-group mb-5">
+        <label for="genreSelect" class="mb-1">Search by gender:</label>
+        <select class="form-control" formControlName="genre" id="genreSelect">
+          <option value="">All</option>
+          <option value="2d">2D</option>
+          <option value="3d">3D</option>
+          <option value="action">Action</option>
+          <option value="action-rpg">Action RPG</option>
+          <option value="anime">Anime</option>
+          <option value="battle-royale">Battle Royale</option>
+          <option value="card">Card</option>
+          <option value="fantasy">Fantasy</option>
+          <option value="fighting">Fighting</option>
+          <option value="first-person">First Person</option>
+          <option value="flight">Flight</option>
+          <option value="horror">Horror</option>
+          <option value="low-spec">Low Spec</option>
+          <option value="martial-arts">Martial Arts</option>
+          <option value="military">Military</option>
+          <option value="mmo">MMO</option>
+          <option value="mmofps">MMO FPS</option>
+          <option value="mmorpg">MMORPG</option>
+          <option value="mmotps">Military</option>
+          <option value="moba">MOBA</option>
+          <option value="permadeath">Permadeath</option>
+          <option value="pixel">Pixel</option>
+          <option value="pve">PvE</option>
+          <option value="pvp">PvP</option>
+          <option value="racing">Racing</option>
+          <option value="sailing">Sailing</option>
+          <option value="sandbox">Sandbox</option>
+          <option value="sci-fi">Sci Fi</option>
+          <option value="shooter">Shooter</option>
+          <option value="side-scroller">Side Scroller</option>
+          <option value="social">Social</option>
+          <option value="space">Space</option>
+          <option value="sports">Sports</option>
+          <option value="strategy">Strategy</option>
+          <option value="superhero">Superhero</option>
+          <option value="survival">Survival</option>
+          <option value="tank">Tank</option>
+          <option value="third-person">Third Person</option>
+          <option value="top-down">Top Down</option>
+          <option value="tower-defense">Tower Defense</option>
+          <option value="turn-based">Turn Based</option>
+          <option value="voxel">Voxel</option>
+          <option value="zombie">Zombie</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="platformSelect" class="mb-1">Search by platform:</label>
+        <select
+          class="form-control"
+          formControlName="platform"
+          id="platformSelect"
+        >
+          <option value="">All</option>
+          <option value="pc">PC</option>
+          <option value="browser">Browser</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div
+    class="col-12 col-md-9 px-5 px-md-0 pt-5 row game-list-container"
+    *ngIf="isLoading; else gameList"
+  >
+    <div class="loader-container">
+      Loading...
+    </div>
+  </div>
+
+  <ng-template #gameList>
+    <div
+      class="col-12 col-md-9 px-5 px-md-0 pt-5 row game-list-container"
+      *ngIf="filteredGames.length > 0; else notFound"
+    >
+      <div
+        class="col-lg-4 col-md-6 col-sm-12 mb-4"
+        *ngFor="
+          let game of filteredGames
+            | paginate : { itemsPerPage: pageSize, currentPage: currentPage };
+          let i = index
+        "
+      >
+        <div class="card h-100">
+          <img class="card-img-top" [src]="game.thumbnail" [alt]="game.title" />
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div class="pb-2">
+              <h5 class="card-title">{{ game.title }}</h5>
+              <p class="card-text">{{ game.short_description }}</p>
+            </div>
+            <div>
+              <a
+                [routerLink]="['/game', game.id]"
+                (click)="setPageValue(currentPage)"
+                class="btn btn-primary w-100"
+                >See Details</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mt-4">
+        <pagination-controls
+          (pageChange)="currentPage = $event"
+          class="pagination"
+        ></pagination-controls>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #notFound>
+    <div class="not-found">
+      <i class="fas fa-exclamation-circle"></i>
+      Not found
+    </div>
+  </ng-template>
+</div>
